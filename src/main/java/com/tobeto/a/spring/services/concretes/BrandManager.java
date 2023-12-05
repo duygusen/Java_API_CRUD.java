@@ -6,11 +6,11 @@ import com.tobeto.a.spring.services.abstracts.BrandService;
 import com.tobeto.a.spring.services.dtos.brand.requests.AddBrandRequest;
 import com.tobeto.a.spring.services.dtos.brand.requests.DeleteBrandRequest;
 import com.tobeto.a.spring.services.dtos.brand.requests.UpdateBrandRequest;
-import com.tobeto.a.spring.services.dtos.brand.responses.GetListBrandId;
-import com.tobeto.a.spring.services.dtos.brand.responses.GetListBrandResponse;
+import com.tobeto.a.spring.services.dtos.brand.responses.BrandResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BrandManager implements BrandService {
@@ -46,16 +46,28 @@ public class BrandManager implements BrandService {
     public List<Brand> getByName(String name) {
 
         return brandRepository.findByNameStartingWith(name);
+
+    }
+    //Stream API&Lambda Expression
+    @Override
+    public List<BrandResponse> getByBrandName(String name) {
+
+        List<BrandResponse> brandList = brandRepository.findByName(name);
+
+        return brandList.stream()
+                .map(brand -> new BrandResponse(brand.getId(), brand.getName()))
+                .collect(Collectors.toList());
+
     }
 
     @Override
-    public List<GetListBrandResponse> getByNameDto(String name) {
-        return brandRepository.findByName(name);
-    }
+    public List<BrandResponse> getByBrandIdAndName(int id) {
 
-    @Override
-    public List<GetListBrandId> getByIdAndNameDto(int id) {
-        return brandRepository.findByIdGreaterThan(id);
+        List<BrandResponse> brandList = brandRepository.findByIdGreaterThan(id);
+
+        return brandList.stream()
+                .map(brand -> new BrandResponse(brand.getId(), brand.getName()))
+                .collect(Collectors.toList());
     }
 
 

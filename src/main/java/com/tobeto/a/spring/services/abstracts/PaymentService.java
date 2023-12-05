@@ -7,6 +7,7 @@ import com.tobeto.a.spring.services.dtos.payment.requests.DeletePaymentRequest;
 import com.tobeto.a.spring.services.dtos.payment.requests.UpdatePaymentRequest;
 import com.tobeto.a.spring.services.dtos.payment.responses.GetListPaymentDiscount;
 import com.tobeto.a.spring.services.dtos.payment.responses.GetListPaymentMethod;
+import com.tobeto.a.spring.services.dtos.payment.responses.PaymentResponse;
 
 import java.util.List;
 
@@ -15,6 +16,6 @@ public interface PaymentService {
     void update(UpdatePaymentRequest request);
     void delete(DeletePaymentRequest request);
 
-    List<GetListPaymentDiscount> getByPaymentDiscountDto(double discount);
-    List<GetListPaymentMethod> getByPaymentMethodDto(String paymentMethod);
+    List<PaymentResponse> getByPaymentDiscount(double discount);
+    List<PaymentResponse> getByPaymentMethod(String paymentMethod);
 }

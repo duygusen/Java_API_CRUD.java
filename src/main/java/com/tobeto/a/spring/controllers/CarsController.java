@@ -9,6 +9,7 @@ import com.tobeto.a.spring.services.dtos.brand.responses.GetListBrandResponse;
 import com.tobeto.a.spring.services.dtos.car.requests.AddCarRequest;
 import com.tobeto.a.spring.services.dtos.car.requests.DeleteCarRequest;
 import com.tobeto.a.spring.services.dtos.car.requests.UpdateCarRequest;
+import com.tobeto.a.spring.services.dtos.car.responses.CarResponse;
 import com.tobeto.a.spring.services.dtos.car.responses.GetListCarModelYear;
 import com.tobeto.a.spring.services.dtos.car.responses.GetListCarStatus;
 import org.springframework.web.bind.annotation.*;
@@ -40,13 +41,13 @@ public class CarsController {
     }
 
     @GetMapping("dto/cars/status")
-    public List<GetListCarStatus> getByStatusDto(@RequestParam String status){
-        return  carService.getByStatusDto(status);
+    public List<CarResponse> getByStatus(@RequestParam String status){
+        return  carService.getByStatus(status);
     }
 
     @GetMapping("dto/cars/modelYear")
-    public List<GetListCarModelYear> getByModelYearDto(@RequestParam int modelYear){
-        return  carService.getByModelYearDto(modelYear);
+    public List<CarResponse> getByModelYear(@RequestParam int modelYear){
+        return  carService.getByModelYear(modelYear);
     }
 
 }

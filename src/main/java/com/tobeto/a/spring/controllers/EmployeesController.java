@@ -5,6 +5,7 @@ import com.tobeto.a.spring.services.dtos.car.responses.GetListCarStatus;
 import com.tobeto.a.spring.services.dtos.employee.requests.AddEmployeeRequest;
 import com.tobeto.a.spring.services.dtos.employee.requests.DeleteEmployeeRequest;
 import com.tobeto.a.spring.services.dtos.employee.requests.UpdateEmployeeRequest;
+import com.tobeto.a.spring.services.dtos.employee.responses.EmployeeResponse;
 import com.tobeto.a.spring.services.dtos.employee.responses.GetListEmployeeAge;
 import com.tobeto.a.spring.services.dtos.employee.responses.GetListEmployeeNameAndSurname;
 import org.springframework.web.bind.annotation.*;
@@ -36,12 +37,12 @@ public class EmployeesController {
     }
 
     @GetMapping("dto/employees/name")
-    public List<GetListEmployeeNameAndSurname> getByNameDto(@RequestParam String name, @RequestParam String surname){
-        return  employeeService.getByNameDto(name,surname);
+    public List<EmployeeResponse> getByName(@RequestParam String name, @RequestParam String surname){
+        return  employeeService.getByName(name,surname);
     }
 
     @GetMapping("dto/employees/age")
-    public List<GetListEmployeeAge> getByAgeDto(@RequestParam int age){
-        return  employeeService.getByAgeDto(age);
+    public List<EmployeeResponse> getByAge(@RequestParam int age){
+        return  employeeService.getByAge(age);
     }
 }

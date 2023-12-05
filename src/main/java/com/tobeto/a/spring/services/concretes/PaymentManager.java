@@ -8,6 +8,7 @@ import com.tobeto.a.spring.services.dtos.payment.requests.DeletePaymentRequest;
 import com.tobeto.a.spring.services.dtos.payment.requests.UpdatePaymentRequest;
 import com.tobeto.a.spring.services.dtos.payment.responses.GetListPaymentDiscount;
 import com.tobeto.a.spring.services.dtos.payment.responses.GetListPaymentMethod;
+import com.tobeto.a.spring.services.dtos.payment.responses.PaymentResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,12 +47,12 @@ public class PaymentManager implements PaymentService {
     }
 
     @Override
-    public List<GetListPaymentDiscount> getByPaymentDiscountDto(double discount) {
+    public List<PaymentResponse> getByPaymentDiscount(double discount) {
         return paymentRepository.findByPaymentDiscount(discount);
     }
 
     @Override
-    public List<GetListPaymentMethod> getByPaymentMethodDto(String paymentMethod) {
+    public List<PaymentResponse> getByPaymentMethod(String paymentMethod) {
         return paymentRepository.findByPaymentMethod(paymentMethod);
     }
 }

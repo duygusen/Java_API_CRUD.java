@@ -4,6 +4,7 @@ import com.tobeto.a.spring.services.abstracts.CustomerService;
 import com.tobeto.a.spring.services.dtos.customer.requests.AddCustomerRequest;
 import com.tobeto.a.spring.services.dtos.customer.requests.DeleteCustomerRequest;
 import com.tobeto.a.spring.services.dtos.customer.requests.UpdateCustomerRequest;
+import com.tobeto.a.spring.services.dtos.customer.responses.CustomerResponse;
 import com.tobeto.a.spring.services.dtos.customer.responses.GetListCustomerAdress;
 import com.tobeto.a.spring.services.dtos.customer.responses.GetListCustomerPhone;
 import org.springframework.web.bind.annotation.*;
@@ -34,12 +35,12 @@ public class CustomersController {
     }
 
     @GetMapping("dto/customers/adress")
-    public List<GetListCustomerAdress> getByAdressDto(@RequestParam String adress){
-        return customerService.getByAdressDto(adress);
+    public List<CustomerResponse> getByAdress(@RequestParam String adress){
+        return customerService.getByAdress(adress);
     }
 
     @GetMapping("dto/customers/phone")
-    public List<GetListCustomerPhone> getByPhoneDto(@RequestParam int phone){
-        return customerService.getByPhoneDto(phone);
+    public List<CustomerResponse> getByPhone(@RequestParam int phone){
+        return customerService.getByPhone(phone);
     }
 }

@@ -5,6 +5,7 @@ import com.tobeto.a.spring.services.dtos.car.responses.GetListCarStatus;
 import com.tobeto.a.spring.services.dtos.employee.requests.AddEmployeeRequest;
 import com.tobeto.a.spring.services.dtos.employee.requests.DeleteEmployeeRequest;
 import com.tobeto.a.spring.services.dtos.employee.requests.UpdateEmployeeRequest;
+import com.tobeto.a.spring.services.dtos.employee.responses.EmployeeResponse;
 import com.tobeto.a.spring.services.dtos.employee.responses.GetListEmployeeAge;
 import com.tobeto.a.spring.services.dtos.employee.responses.GetListEmployeeNameAndSurname;
 
@@ -15,6 +16,6 @@ public interface EmployeeService {
     void update(UpdateEmployeeRequest request);
     void delete(DeleteEmployeeRequest request);
 
-    List<GetListEmployeeNameAndSurname> getByNameDto(String name, String surname);
-    List<GetListEmployeeAge> getByAgeDto(int age);
+    List<EmployeeResponse> getByName(String name, String surname);
+    List<EmployeeResponse> getByAge(int age);
 }

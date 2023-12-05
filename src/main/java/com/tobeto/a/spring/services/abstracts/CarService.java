@@ -4,6 +4,7 @@ import com.tobeto.a.spring.services.dtos.brand.responses.GetListBrandResponse;
 import com.tobeto.a.spring.services.dtos.car.requests.AddCarRequest;
 import com.tobeto.a.spring.services.dtos.car.requests.DeleteCarRequest;
 import com.tobeto.a.spring.services.dtos.car.requests.UpdateCarRequest;
+import com.tobeto.a.spring.services.dtos.car.responses.CarResponse;
 import com.tobeto.a.spring.services.dtos.car.responses.GetListCarModelYear;
 import com.tobeto.a.spring.services.dtos.car.responses.GetListCarStatus;
 
@@ -14,7 +15,7 @@ public interface CarService {
     void update(UpdateCarRequest request);
     void delete(DeleteCarRequest request);
 
-    List<GetListCarStatus> getByStatusDto(String status);
-    List<GetListCarModelYear> getByModelYearDto(int modelYear);
+    List<CarResponse> getByStatus(String status);
+    List<CarResponse> getByModelYear(int modelYear);
 
 }

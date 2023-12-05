@@ -3,15 +3,15 @@ package com.tobeto.a.spring.services.concretes;
 import com.tobeto.a.spring.entities.Car;
 import com.tobeto.a.spring.repositories.CarRepository;
 import com.tobeto.a.spring.services.abstracts.CarService;
-import com.tobeto.a.spring.services.dtos.brand.responses.GetListBrandResponse;
 import com.tobeto.a.spring.services.dtos.car.requests.AddCarRequest;
 import com.tobeto.a.spring.services.dtos.car.requests.DeleteCarRequest;
 import com.tobeto.a.spring.services.dtos.car.requests.UpdateCarRequest;
-import com.tobeto.a.spring.services.dtos.car.responses.GetListCarModelYear;
-import com.tobeto.a.spring.services.dtos.car.responses.GetListCarStatus;
+import com.tobeto.a.spring.services.dtos.car.responses.CarResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
 
 @Service
 public class CarManager implements CarService {
@@ -50,13 +50,21 @@ public class CarManager implements CarService {
     }
 
     @Override
-    public List<GetListCarStatus> getByStatusDto(String status) {
-        return carRepository.findByStatus(status);
+    public List<CarResponse> getByStatus(String status) {
+
+        List<CarResponse> carList = carRepository.findByStatus(status);
+        return carList.stream()
+                .map(car -> new CarResponse(car.getId(), car.getStatus()))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public List<GetListCarModelYear> getByModelYearDto(int modelYear) {
-        return carRepository.findByModelYear(modelYear);
+    public List<CarResponse> getByModelYear(int modelYear) {
+
+        List<CarResponse> carList = carRepository.findByModelYear(modelYear);
+        return carList.stream()
+                .map(car -> new CarResponse(car.getId(), car.getModelYear()))
+                .collect(Collectors.toList());
     }
 
 }

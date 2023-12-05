@@ -3,9 +3,11 @@ package com.tobeto.a.spring.services.concretes;
 import com.tobeto.a.spring.entities.Customer;
 import com.tobeto.a.spring.repositories.CustomerRepository;
 import com.tobeto.a.spring.services.abstracts.CustomerService;
+import com.tobeto.a.spring.services.dtos.car.responses.CarResponse;
 import com.tobeto.a.spring.services.dtos.customer.requests.AddCustomerRequest;
 import com.tobeto.a.spring.services.dtos.customer.requests.DeleteCustomerRequest;
 import com.tobeto.a.spring.services.dtos.customer.requests.UpdateCustomerRequest;
+import com.tobeto.a.spring.services.dtos.customer.responses.CustomerResponse;
 import com.tobeto.a.spring.services.dtos.customer.responses.GetListCustomerAdress;
 import com.tobeto.a.spring.services.dtos.customer.responses.GetListCustomerPhone;
 import org.springframework.stereotype.Service;
@@ -50,12 +52,14 @@ public class CustomerManager implements CustomerService {
     }
 
     @Override
-    public List<GetListCustomerAdress> getByAdressDto(String adress) {
-        return customerRepository.findByAdressStartingWith(adress);
+    public List<CustomerResponse> getByAdress(String adress) {
+        List<CustomerResponse> customerList = customerRepository.findByAdressStartingWith(adress);
+        return customerList.stream().map(customer -> new CustomerResponse(customer.getId(), customer.getSurname(), customer.getAdress())).toList();
     }
 
     @Override
-    public List<GetListCustomerPhone> getByPhoneDto(int phone) {
+    public List<CustomerResponse> getByPhone(int phone) {
+
         return customerRepository.findByPhone(phone);
     }
 }

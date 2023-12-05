@@ -9,6 +9,7 @@ import com.tobeto.a.spring.services.dtos.payment.requests.DeletePaymentRequest;
 import com.tobeto.a.spring.services.dtos.payment.requests.UpdatePaymentRequest;
 import com.tobeto.a.spring.services.dtos.payment.responses.GetListPaymentDiscount;
 import com.tobeto.a.spring.services.dtos.payment.responses.GetListPaymentMethod;
+import com.tobeto.a.spring.services.dtos.payment.responses.PaymentResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,12 +40,12 @@ public class PaymentsController {
     }
 
     @GetMapping("dto/payments/discount")
-    public List<GetListPaymentDiscount> getByPaymentDiscountDto(@RequestParam double discount){
-        return  paymentService.getByPaymentDiscountDto(discount);
+    public List<PaymentResponse> getByPaymentDiscount(@RequestParam double discount){
+        return  paymentService.getByPaymentDiscount(discount);
     }
 
     @GetMapping("dto/payments/paymentMethod")
-    public List<GetListPaymentMethod> getByPaymentMethodDto(@RequestParam String paymentMethod){
-        return  paymentService.getByPaymentMethodDto(paymentMethod);
+    public List<PaymentResponse> getByPaymentMethod(@RequestParam String paymentMethod){
+        return  paymentService.getByPaymentMethod(paymentMethod);
     }
 }

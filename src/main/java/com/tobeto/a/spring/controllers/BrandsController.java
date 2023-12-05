@@ -5,6 +5,7 @@ import com.tobeto.a.spring.services.abstracts.BrandService;
 import com.tobeto.a.spring.services.dtos.brand.requests.AddBrandRequest;
 import com.tobeto.a.spring.services.dtos.brand.requests.DeleteBrandRequest;
 import com.tobeto.a.spring.services.dtos.brand.requests.UpdateBrandRequest;
+import com.tobeto.a.spring.services.dtos.brand.responses.BrandResponse;
 import com.tobeto.a.spring.services.dtos.brand.responses.GetListBrandId;
 import com.tobeto.a.spring.services.dtos.brand.responses.GetListBrandResponse;
 import org.springframework.web.bind.annotation.*;
@@ -41,14 +42,13 @@ public class BrandsController
     }
 
     @GetMapping("dto")
-    public List<GetListBrandResponse> getByNameDto(@RequestParam String name){
-        return  brandService.getByNameDto(name);
+    public List<BrandResponse> getByBrandName(@RequestParam String name){
+        return  brandService.getByBrandName(name);
     }
 
     @GetMapping("dto/{id}")
-    public List<GetListBrandId> getByIdAndNameDto(@PathVariable int id){
-        return brandService.getByIdAndNameDto(id);
-
+    public List<BrandResponse> getByBrandIdAndName(@PathVariable int id){
+        return brandService.getByBrandIdAndName(id);
     }
 
 }
