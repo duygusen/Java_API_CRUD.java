@@ -17,4 +17,9 @@ public interface CarRepository extends JpaRepository<Car, Integer> {
 
     @Query("Select new com.tobeto.a.spring.services.dtos.car.responses.CarResponse(c.id, c.modelYear) From Car c Where c.modelYear > :modelYear")
     List<CarResponse> findByModelYear(@Param("modelYear") int modelYear);
+
+    //@Query("SELECT c FROM Car c WHERE c.modelName = :modelName")
+    List<Car> findByModelName(String modelName);
+
+
 }

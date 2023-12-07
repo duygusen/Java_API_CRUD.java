@@ -8,6 +8,7 @@ import com.tobeto.a.spring.services.dtos.brand.requests.UpdateBrandRequest;
 import com.tobeto.a.spring.services.dtos.brand.responses.BrandResponse;
 import com.tobeto.a.spring.services.dtos.brand.responses.GetListBrandId;
 import com.tobeto.a.spring.services.dtos.brand.responses.GetListBrandResponse;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,12 +23,12 @@ public class BrandsController
     }
 
     @PostMapping
-    public void add(@RequestBody AddBrandRequest request){
+    public void add(@RequestBody @Valid AddBrandRequest request){
         brandService.add(request);
     }
 
     @PutMapping("{id}")
-    public void update (@RequestBody UpdateBrandRequest request){
+    public void update (@RequestBody @Valid UpdateBrandRequest request){
         brandService.update(request);
     }
 
@@ -50,5 +51,7 @@ public class BrandsController
     public List<BrandResponse> getByBrandIdAndName(@PathVariable int id){
         return brandService.getByBrandIdAndName(id);
     }
+
+
 
 }

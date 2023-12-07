@@ -24,6 +24,12 @@ public class PaymentManager implements PaymentService {
 
     @Override
     public void add(AddPaymentRequest request) {
+        //İs kurallari
+        double amountMinValue = request.getAmount();
+        if(amountMinValue < 1000 ){
+            throw new RuntimeException("Tutar 1000'den küçük olamaz.");
+        }
+
         Payment payment = new Payment();
         payment.setAmount(request.getAmount());
         payment.setDiscount(request.getDiscount());
@@ -33,6 +39,12 @@ public class PaymentManager implements PaymentService {
 
     @Override
     public void update(UpdatePaymentRequest request) {
+        //İs kurallari
+        String paymentMethodDifferentValue = request.getPaymentMethod();
+        if("Kredi Kartı".equals(paymentMethodDifferentValue) || "Nakit".equals(paymentMethodDifferentValue)){
+            throw new RuntimeException("Kredi Kartı veya Nakit dışında değer girilememektedir.");
+        }
+
         Payment paymentToUpdate = paymentRepository.findById(request.getId()).orElseThrow();
         paymentToUpdate.setAmount(request.getAmount());
         paymentToUpdate.setDiscount(request.getDiscount());

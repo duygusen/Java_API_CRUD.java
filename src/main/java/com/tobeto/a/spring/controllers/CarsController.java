@@ -12,6 +12,7 @@ import com.tobeto.a.spring.services.dtos.car.requests.UpdateCarRequest;
 import com.tobeto.a.spring.services.dtos.car.responses.CarResponse;
 import com.tobeto.a.spring.services.dtos.car.responses.GetListCarModelYear;
 import com.tobeto.a.spring.services.dtos.car.responses.GetListCarStatus;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,12 +27,12 @@ public class CarsController {
     }
 
     @PostMapping
-    public void add(@RequestBody AddCarRequest request){
+    public void add(@RequestBody @Valid AddCarRequest request){
         carService.add(request);
     }
 
     @PutMapping("{id}")
-    public void update (@RequestBody UpdateCarRequest request){
+    public void update (@RequestBody @Valid UpdateCarRequest request){
         carService.update(request);
     }
 

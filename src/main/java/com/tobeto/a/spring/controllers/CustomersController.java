@@ -7,6 +7,7 @@ import com.tobeto.a.spring.services.dtos.customer.requests.UpdateCustomerRequest
 import com.tobeto.a.spring.services.dtos.customer.responses.CustomerResponse;
 import com.tobeto.a.spring.services.dtos.customer.responses.GetListCustomerAdress;
 import com.tobeto.a.spring.services.dtos.customer.responses.GetListCustomerPhone;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,12 +21,12 @@ public class CustomersController {
     }
 
     @PostMapping
-    public void add(@RequestBody AddCustomerRequest request){
+    public void add(@RequestBody @Valid AddCustomerRequest request){
         customerService.add(request);
     }
 
     @PutMapping("{id}")
-    public void update (@RequestBody UpdateCustomerRequest request){
+    public void update (@RequestBody @Valid UpdateCustomerRequest request){
         customerService.update(request);
     }
 

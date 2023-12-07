@@ -16,4 +16,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     @Query("Select new com.tobeto.a.spring.services.dtos.employee.responses.EmployeeResponse(e.id, e.name, e.age) From Employee e Where e.age >= :age order by e.name desc")
     List<EmployeeResponse> findByAge(@Param("age") int age);
+
+    boolean existsByAdress (String adress);
 }

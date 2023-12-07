@@ -1,7 +1,9 @@
 package com.tobeto.a.spring.services.concretes;
 
+import com.tobeto.a.spring.entities.Brand;
 import com.tobeto.a.spring.entities.Car;
 import com.tobeto.a.spring.repositories.CarRepository;
+import com.tobeto.a.spring.services.abstracts.BrandService;
 import com.tobeto.a.spring.services.abstracts.CarService;
 import com.tobeto.a.spring.services.dtos.car.requests.AddCarRequest;
 import com.tobeto.a.spring.services.dtos.car.requests.DeleteCarRequest;
@@ -16,6 +18,7 @@ import java.util.stream.Collectors;
 @Service
 public class CarManager implements CarService {
     private final CarRepository carRepository;
+
     public CarManager(CarRepository carRepository) {
         this.carRepository = carRepository;
     }
@@ -23,17 +26,51 @@ public class CarManager implements CarService {
 
     @Override
     public void add(AddCarRequest request) {
+
+        //İs kurallari
+
+        List<Car> carSameWithName = carRepository.findByModelName(request.getModelName());
+
+        if(!carSameWithName.isEmpty()){
+            throw new RuntimeException("Aynı araç modelinden 2 adet olamaz");
+        }
+
+        int carNameLenght = request.getModelName().length();
+
+        if(carNameLenght <2){
+            throw  new RuntimeException("Model ismi 2'den küçük olamaz.");
+        }
+
+        //Mapleme
         Car car = new Car();
         car.setModelYear(request.getModelYear());
         car.setModelName(request.getModelName());
         car.setDailyPrice(request.getDailyPrice());
         car.setStatus(request.getStatus());
         car.setColor(request.getColor());
+
+        //FK alanları => FK alıp, db'den ilgili obje alarak set ederiz.
+        //Brand brand = brandService.getById(request.getBrandId());
+        //car.setBrand(brand);
+
         carRepository.save(car);
     }
 
     @Override
     public void update(UpdateCarRequest request) {
+
+        //İs kurallari
+        double dailyPriceMinCount = request.getDailyPrice();
+        if(dailyPriceMinCount <100){
+            throw new RuntimeException("Günlük minimum tutar 100'den küçük olamaz.");
+        }
+
+        String status = request.getStatus();
+        if ("Avaliable".equals(status) || "Busy".equals(status) ){
+            throw new RuntimeException("Uygun statüs girilmemişir. Lütfen Avaliable veya Busy şeklinde girniz.");
+        }
+
+
         Car carToUpdate = carRepository.findById(request.getId()).orElseThrow();
         carToUpdate.setModelYear(request.getModelYear());
         carToUpdate.setModelName(request.getModelName());

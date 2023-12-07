@@ -22,7 +22,12 @@ public class BrandManager implements BrandService {
 
     @Override
     public void add(AddBrandRequest request) {
-        //iş süreclerini ekle
+
+        //is kuralları
+        String brandName = request.getName();
+        if(brandName != null){
+            throw new RuntimeException("Marka ismi boş geçilemez.");
+        }
 
         Brand brand = new Brand();
         brand.setName(request.getName());
@@ -31,6 +36,12 @@ public class BrandManager implements BrandService {
 
     @Override
     public void update(UpdateBrandRequest request) {
+
+        //is kuralları
+        if (brandRepository.existsByName(request.getName())){
+            throw new RuntimeException("Aynı markadan 2 adet ekleme yapamazsınız.");
+        }
+
         Brand brandToUpdate = brandRepository.findById(request.getId()).orElseThrow();
         brandToUpdate.setName(request.getName());
         brandRepository.save(brandToUpdate);
@@ -69,6 +80,5 @@ public class BrandManager implements BrandService {
                 .map(brand -> new BrandResponse(brand.getId(), brand.getName()))
                 .collect(Collectors.toList());
     }
-
 
 }

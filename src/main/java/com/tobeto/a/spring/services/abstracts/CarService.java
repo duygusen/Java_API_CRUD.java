@@ -1,5 +1,6 @@
 package com.tobeto.a.spring.services.abstracts;
 
+import com.tobeto.a.spring.entities.Car;
 import com.tobeto.a.spring.services.dtos.brand.responses.GetListBrandResponse;
 import com.tobeto.a.spring.services.dtos.car.requests.AddCarRequest;
 import com.tobeto.a.spring.services.dtos.car.requests.DeleteCarRequest;
@@ -17,5 +18,7 @@ public interface CarService {
 
     List<CarResponse> getByStatus(String status);
     List<CarResponse> getByModelYear(int modelYear);
+
+
 
 }

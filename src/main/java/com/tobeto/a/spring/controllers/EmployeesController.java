@@ -8,6 +8,7 @@ import com.tobeto.a.spring.services.dtos.employee.requests.UpdateEmployeeRequest
 import com.tobeto.a.spring.services.dtos.employee.responses.EmployeeResponse;
 import com.tobeto.a.spring.services.dtos.employee.responses.GetListEmployeeAge;
 import com.tobeto.a.spring.services.dtos.employee.responses.GetListEmployeeNameAndSurname;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,12 +23,12 @@ public class EmployeesController {
     }
 
     @PostMapping
-    public void add(@RequestBody AddEmployeeRequest request){
+    public void add(@RequestBody @Valid AddEmployeeRequest request){
         employeeService.add(request);
     }
 
     @PutMapping("{id}")
-    public void update (@RequestBody UpdateEmployeeRequest request){
+    public void update (@RequestBody @Valid UpdateEmployeeRequest request){
         employeeService.update(request);
     }
 

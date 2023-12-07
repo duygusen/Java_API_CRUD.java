@@ -10,6 +10,7 @@ import com.tobeto.a.spring.services.dtos.payment.requests.UpdatePaymentRequest;
 import com.tobeto.a.spring.services.dtos.payment.responses.GetListPaymentDiscount;
 import com.tobeto.a.spring.services.dtos.payment.responses.GetListPaymentMethod;
 import com.tobeto.a.spring.services.dtos.payment.responses.PaymentResponse;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,12 +26,12 @@ public class PaymentsController {
     }
 
     @PostMapping
-    public void add(@RequestBody AddPaymentRequest request){
+    public void add(@RequestBody @Valid AddPaymentRequest request){
         paymentService.add(request);
     }
 
     @PutMapping("{id}")
-    public void update (@RequestBody UpdatePaymentRequest request){
+    public void update (@RequestBody @Valid UpdatePaymentRequest request){
         paymentService.update(request);
     }
 

@@ -23,6 +23,12 @@ public class EmployeeManager implements EmployeeService {
 
     @Override
     public void add(AddEmployeeRequest request) {
+        //İs kurallari
+        if (employeeRepository.existsByAdress(request.getAdress())){
+            throw new RuntimeException("Aynı adresten iki adet olmaz.");
+        }
+
+
         Employee employee = new Employee();
         employee.setName(request.getName());
         employee.setSurname(request.getSurname());
@@ -34,6 +40,15 @@ public class EmployeeManager implements EmployeeService {
 
     @Override
     public void update(UpdateEmployeeRequest request) {
+        //İs kurallari
+
+        String name = request.getName();
+        String surname = request.getSurname();
+
+        if (name.equals(surname) ){
+           throw new RuntimeException("İsim ile soyisim aynı olamaz.");
+        }
+
         Employee employeeToUpdate = employeeRepository.findById(request.getId()).orElseThrow();
         employeeToUpdate.setName(request.getName());
         employeeToUpdate.setSurname(request.getSurname());

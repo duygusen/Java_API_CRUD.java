@@ -25,6 +25,13 @@ public class CustomerManager implements CustomerService {
 
     @Override
     public void add(AddCustomerRequest request) {
+
+        //İs kurallari
+        int ageRole = request.getAge();
+        if (ageRole < 18){
+            throw new RuntimeException("Yaş 18'den küçük olmaz.");
+        }
+
         Customer customer = new Customer();
         customer.setName(request.getName());
         customer.setSurname(request.getSurname());
@@ -36,6 +43,12 @@ public class CustomerManager implements CustomerService {
 
     @Override
     public void update(UpdateCustomerRequest request) {
+        //İs kurallari
+        String phoneBusinessRole = String.valueOf(request.getPhone());
+        if(phoneBusinessRole.length() < 10){
+            throw new RuntimeException("Telefon numarası 10 karakterden az olamaz.");
+        }
+
         Customer customerToUpdate = customerRepository.findById(request.getId()).orElseThrow();
         customerToUpdate.setName(request.getName());
         customerToUpdate.setSurname(request.getSurname());

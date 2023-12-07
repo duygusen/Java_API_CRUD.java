@@ -15,4 +15,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
     @Query("Select new com.tobeto.a.spring.services.dtos.customer.responses.CustomerResponse(c.id, c.phone) From Customer c Where c.phone = :phone")
     List<CustomerResponse> findByPhone (@Param("phone") int phone);
+
+
 }
