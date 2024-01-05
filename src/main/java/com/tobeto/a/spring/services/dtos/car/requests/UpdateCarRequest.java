@@ -10,8 +10,10 @@ public class UpdateCarRequest {
 
     private int modelYear;
 
-    @NotBlank
     private String modelName;
+
+    @NotBlank
+    private String plate;
 
     @Max(5000)
     private double dailyPrice;
