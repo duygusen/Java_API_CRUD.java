@@ -3,13 +3,10 @@ package com.tobeto.a.spring.services.concretes;
 import com.tobeto.a.spring.entities.Customer;
 import com.tobeto.a.spring.repositories.CustomerRepository;
 import com.tobeto.a.spring.services.abstracts.CustomerService;
-import com.tobeto.a.spring.services.dtos.car.responses.CarResponse;
 import com.tobeto.a.spring.services.dtos.customer.requests.AddCustomerRequest;
 import com.tobeto.a.spring.services.dtos.customer.requests.DeleteCustomerRequest;
 import com.tobeto.a.spring.services.dtos.customer.requests.UpdateCustomerRequest;
 import com.tobeto.a.spring.services.dtos.customer.responses.CustomerResponse;
-import com.tobeto.a.spring.services.dtos.customer.responses.GetListCustomerAdress;
-import com.tobeto.a.spring.services.dtos.customer.responses.GetListCustomerPhone;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

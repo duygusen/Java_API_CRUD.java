@@ -59,6 +59,7 @@ public class BrandManager implements BrandService {
         return brandRepository.findByNameStartingWith(name);
 
     }
+
     //Stream API&Lambda Expression
     @Override
     public List<BrandResponse> getByBrandName(String name) {

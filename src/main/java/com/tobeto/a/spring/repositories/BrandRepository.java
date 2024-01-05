@@ -2,15 +2,13 @@ package com.tobeto.a.spring.repositories;
 
 import com.tobeto.a.spring.entities.Brand;
 import com.tobeto.a.spring.services.dtos.brand.responses.BrandResponse;
-import com.tobeto.a.spring.services.dtos.brand.responses.GetListBrandId;
-import com.tobeto.a.spring.services.dtos.brand.responses.GetListBrandResponse;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface BrandRepository extends JpaRepository<Brand, Integer>
+public interface BrandRepository extends MongoRepository<Brand, Integer>
 {
 
     List<Brand> findByNameStartingWith(String name);

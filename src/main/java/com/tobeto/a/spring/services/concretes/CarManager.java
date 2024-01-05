@@ -1,9 +1,7 @@
 package com.tobeto.a.spring.services.concretes;
 
-import com.tobeto.a.spring.entities.Brand;
 import com.tobeto.a.spring.entities.Car;
 import com.tobeto.a.spring.repositories.CarRepository;
-import com.tobeto.a.spring.services.abstracts.BrandService;
 import com.tobeto.a.spring.services.abstracts.CarService;
 import com.tobeto.a.spring.services.dtos.car.requests.AddCarRequest;
 import com.tobeto.a.spring.services.dtos.car.requests.DeleteCarRequest;

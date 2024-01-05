@@ -6,8 +6,6 @@ import com.tobeto.a.spring.services.abstracts.PaymentService;
 import com.tobeto.a.spring.services.dtos.payment.requests.AddPaymentRequest;
 import com.tobeto.a.spring.services.dtos.payment.requests.DeletePaymentRequest;
 import com.tobeto.a.spring.services.dtos.payment.requests.UpdatePaymentRequest;
-import com.tobeto.a.spring.services.dtos.payment.responses.GetListPaymentDiscount;
-import com.tobeto.a.spring.services.dtos.payment.responses.GetListPaymentMethod;
 import com.tobeto.a.spring.services.dtos.payment.responses.PaymentResponse;
 import org.springframework.stereotype.Service;
 

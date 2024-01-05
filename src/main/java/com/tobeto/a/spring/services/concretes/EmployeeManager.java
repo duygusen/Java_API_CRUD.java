@@ -7,8 +7,6 @@ import com.tobeto.a.spring.services.dtos.employee.requests.AddEmployeeRequest;
 import com.tobeto.a.spring.services.dtos.employee.requests.DeleteEmployeeRequest;
 import com.tobeto.a.spring.services.dtos.employee.requests.UpdateEmployeeRequest;
 import com.tobeto.a.spring.services.dtos.employee.responses.EmployeeResponse;
-import com.tobeto.a.spring.services.dtos.employee.responses.GetListEmployeeAge;
-import com.tobeto.a.spring.services.dtos.employee.responses.GetListEmployeeNameAndSurname;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
