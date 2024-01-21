@@ -1,7 +1,6 @@
 package com.tobeto.a.spring.services.dtos.event.requests;
 
 import com.tobeto.a.spring.entities.concretes.Category;
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import javax.xml.stream.Location;

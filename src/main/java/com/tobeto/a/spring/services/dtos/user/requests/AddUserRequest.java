@@ -1,6 +1,5 @@
 package com.tobeto.a.spring.services.dtos.user.requests;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import org.springframework.context.annotation.Profile;
 

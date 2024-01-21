@@ -1,6 +1,6 @@
 version: '3'
 services:
-  my-mongodb:
+  main:
     image: mongo
     ports:
       - "27017:27017"
@@ -12,9 +12,13 @@ services:
     ports:
       - "8081:8081"
     environment:
-      - ME_CONFIG_MONGODB_SERVER=my-mongodb
+      - ME_CONFIG_MONGODB_SERVER=main-main-1
       - ME_CONFIG_MONGODB_PORT=27017
-      - ME_CONFIG_BASICAUTH_USERNAME=duygusen  # MongoDB kullanıcı adınız
-      - ME_CONFIG_BASICAUTH_PASSWORD=test  # MongoDB şifreniz
+      - ME_CONFIG_BASICAUTH_USERNAME=duygusen
+      - ME_CONFIG_BASICAUTH_PASSWORD=test
     depends_on:
-      - my-mongodb
+      - main-main-1
+
+networks:
+  my-network:
+    driver: bridge

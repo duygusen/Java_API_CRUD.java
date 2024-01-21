@@ -4,8 +4,6 @@ import com.tobeto.a.spring.entities.abstracts.BaseEntity;
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
-
 @Data
 @Document(collection = "comments")
 public class Comment extends BaseEntity {

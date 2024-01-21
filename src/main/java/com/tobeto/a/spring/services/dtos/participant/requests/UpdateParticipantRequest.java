@@ -1,6 +1,5 @@
 package com.tobeto.a.spring.services.dtos.participant.requests;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
