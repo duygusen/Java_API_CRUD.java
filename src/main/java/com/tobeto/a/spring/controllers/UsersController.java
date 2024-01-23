@@ -1,21 +1,45 @@
 package com.tobeto.a.spring.controllers;
 
+import com.tobeto.a.spring.core.services.JwtService;
 import com.tobeto.a.spring.services.abstracts.UserService;
-import com.tobeto.a.spring.services.dtos.user.requests.AddUserRequest;
-import com.tobeto.a.spring.services.dtos.user.requests.DeleteUserRequest;
-import com.tobeto.a.spring.services.dtos.user.requests.UpdateUserRequest;
+import com.tobeto.a.spring.services.dtos.user.requests.*;
 import com.tobeto.a.spring.services.dtos.user.response.GetAllUsersResponse;
 import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("api/users")
+@AllArgsConstructor
 public class UsersController {
+
     private final UserService userService;
-    public UsersController(UserService userService) {
-        this.userService = userService;
+    private final JwtService jwtService;
+    private final AuthenticationManager authenticationManager;
+
+    @PostMapping("/register")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void register(@RequestBody CreateUserRequest request){userService.register(request);}
+
+    @PostMapping("/login")
+    @ResponseStatus(HttpStatus.OK)
+    public String login(@RequestBody LoginRequest request){
+
+        // TODO: Auth Service'e taşınmalı
+        Authentication authentication = authenticationManager
+                .authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
+        if(authentication.isAuthenticated())
+        {
+            return jwtService.generateToken(request.getUsername());
+        }
+
+        throw new RuntimeException("Kullanıcı adı ya da şifre yanlış");
     }
 
     @PostMapping("/add")
